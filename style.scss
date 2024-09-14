@@ -1,0 +1,1245 @@
+/*---------------------------------------
+  CUSTOM PROPERTIES ( VARIABLES )             
+-----------------------------------------*/
+// Color palette and button styles
+    $white-color:                  #ffffff;
+    $primary-color:                #BC6C25;
+    $secondary-color:              #DDA15E;
+    $section-bg-color:             #b78752;
+    $custom-btn-bg-color:          #BC6C25;
+    $custom-btn-bg-hover-color:    #DDA15E;
+    $dark-color:                   #000000;
+    $p-color:                      #717275;
+    $border-color:                 #7fffd4;
+    $link-hover-color:             #E76F51;
+  
+    // Font settings
+    $body-font-family:             'Plus Jakarta Sans', sans-serif;
+  
+    // Font sizes for headings, paragraphs, buttons, and menu items
+    $h1-font-size:                 68px;
+    $h2-font-size:                 46px;
+    $h3-font-size:                 32px;
+    $h4-font-size:                 28px;
+    $h5-font-size:                 24px;
+    $h6-font-size:                 22px;
+    $p-font-size:                  20px;
+    $btn-font-size:                16px;
+    $form-btn-font-size:           18px;
+    $menu-font-size:               16px;
+  
+   // Border radius values for different element sizes
+    $border-radius-large:          100px;
+    $border-radius-medium:         20px;
+    $border-radius-small:          10px;
+  
+    // Font weight settings
+    $font-weight-thin:             200;
+    $font-weight-light:            300;
+    $font-weight-normal:           400;
+    $font-weight-bold:             700;
+  
+  // Body styling with background color and font family settings
+  body {
+    background-color: $white-color;
+    font-family: $body-font-family;
+  }
+  
+
+
+
+/*---------------------------------------
+  TYPOGRAPHY               
+-----------------------------------------*/
+  // Style for all heading tags
+h1, h2, h3, h4, h5, h6 {
+  // Set all headings to bold font
+  font-weight: $font-weight-bold;
+
+  // Set dark color for heading tags h2 to h6
+  &.h2, &.h3, &.h4, &.h5, &.h6 {
+      color: $dark-color;
+  }
+
+  // Specific font sizes for each heading level
+  h1 { font-size: $h1-font-size;}
+  h2 { font-size: $h2-font-size;}
+  h3 { font-size: $h3-font-size;}
+  h4 { font-size: $h4-font-size;}
+  h5 { font-size: $h5-font-size;}
+  h6 { font-size: $h6-font-size;}
+  
+}
+
+// Styling for paragraphs and list items
+p, ul li {
+  // Text color and size
+  color: $p-color;
+  font-size: $p-font-size;
+ // Light font weight for readability
+  font-weight: $font-weight-light;
+}
+
+// Styling for anchor tags and buttons
+a, button {
+  // Enable smooth touch interactions
+  touch-action: manipulation;
+  // Add transition effect for smooth hover states
+  transition: all 0.3s;
+
+  // Style for anchor links inside the a, button block
+  a {
+      display: inline-block;
+      // Primary color for links
+      color: $primary-color;
+      text-decoration: none;
+
+      // Change link color on hover
+      &:hover {
+          color: $link-hover-color;
+      }
+  }
+}
+
+// Bold and strong text styling
+b, strong {
+  // Set bold text to bold font weight
+  font-weight: $font-weight-bold;
+}
+
+  
+
+
+/*---------------------------------------
+  SECTION               
+-----------------------------------------*/
+// Section padding with 100px top and bottom padding
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+// Background color for section areas
+.section-bg {
+  background-color: $section-bg-color;
+}
+
+// Overlay effect for sections
+.section-overlay {
+  background-color: $dark-color; // Dark overlay color
+  position: absolute; // Position the overlay relative to the section
+  z-index: 9; // Ensure overlay is below other content
+  top: 0; // Align overlay to the top
+  left: 0; // Align overlay to the left
+  pointer-events: none; // Prevent user interaction with the overlay
+  width: 100%; // Full width overlay
+  height: 100%; // Full height overlay
+  opacity: 0.65; // Slight transparency for overlay
+
+  // Target the container immediately after the overlay, ensuring it is on top of the overlay
+  & + .container {
+    position: relative; // Relative positioning to work with overlay
+    z-index: 22; // Ensure it appears above the overlay
+  }
+}
+
+// Back to top icon styling
+.back-top-icon {
+  font-size: $h2-font-size; // Set the icon size to match the h2 font size
+}
+
+  
+
+  /*---------------------------------------
+  TIMELINE               
+  -----------------------------------------*/
+  .timeline {
+    position: relative; // Position relative to its container
+    max-width: 1200px; // Set maximum width for the timeline
+    margin: 0 auto; // Center the timeline horizontally
+  
+    // Vertical line running through the middle of the timeline
+    &::after {
+      content: '';
+      position: absolute;
+      width: 5px; // Line width
+      background-color: $white-color; // Line color
+      top: 0;
+      bottom: 0;
+      left: 50%; // Position the line in the center
+      margin-left: -3px; // Offset to center the line properly
+    }
+  
+    // Container for each timeline event
+    .timeline-container {
+      padding: 10px 40px;
+      padding-top: 0;
+      position: relative;
+      background-color: inherit;
+      width: 50%; // Each event takes up 50% of the width
+  
+      // Circle marker on the timeline
+      &::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -12px; // Position the marker
+        background-color: $white-color; // Circle color
+        border: 5px solid #7c5c52; // Border around the marker
+        top: 15px;
+        border-radius: 50%; // Make the marker circular
+        z-index: 1; // Ensure it appears on top of content
+      }
+  
+      //  For left-aligned timeline events
+      &-left {
+        left: 0; // Align container to the left
+  
+        // Arrow pointing towards the timeline content
+        &::before {
+          content: " ";
+          height: 0;
+          position: absolute; // Absolute positioning to place the arrow
+          top: 9px;
+          width: 0;
+          z-index: 1;
+          right: 25px;
+          border: medium solid white;
+          border-width: 20px 0 20px 20px; // Arrow shape
+          border-color: transparent transparent transparent white;
+        }
+      }
+  
+      // For right-aligned timeline events
+      &-right {
+        left: 50%; // Align container to the right
+  
+        // Arrow pointing towards the timeline content
+        &::before {
+          content: " ";
+          height: 0;
+          position: absolute;
+          top: 9px;
+          width: 0;
+          z-index: 1;
+          left: 25px;
+          border: medium solid white;
+          border-width: 20px 20px 20px 0;
+          border-color: transparent white transparent transparent;
+        }
+  
+        //  Adjust circle marker position for right-aligned events
+        &::after {
+          left: -13px;
+        }
+      }
+    }
+  
+    // Content inside the timeline event container
+    .timeline-content {
+      padding: 5px; // Add padding inside the content
+      background-color: $white-color; // Background of the content
+      position: relative; // Position relative to allow for positioning of child elements
+      border-radius: $border-radius-medium; // Rounded corners for the content
+    }
+  
+    // Responsive adjustments for smaller screens
+    @media screen and (max-width: 991px) {
+      &::after {
+        left: 31px; // Move the timeline line to the left on smaller screens
+      }
+  
+      .timeline-container {
+        width: 100%; // Full width for smaller screens
+        padding-left: 70px;
+        padding-right: 25px;
+  
+        // Arrow adjustments for smaller screens
+        &::before {
+          left: 58px;
+          border: medium solid white;
+          border-width: 20px 20px 20px 0;
+          border-color: transparent white transparent transparent;
+        }
+  
+        &-left::after,
+        &-right::after {
+          left: 6px; // Adjust circle marker position
+        }
+  
+        &-right {
+          left: 0%; // Align right events to the left for smaller screens
+        }
+      }
+    }
+  }
+  
+  
+  /*---------------------------------------
+  CUSTOM BUTTON               
+  -----------------------------------------*/
+
+  .custom-btn {
+    background: $custom-btn-bg-color; // Custom background color for the button
+    border: 2px solid transparent; // Transparent border initially
+    border-radius: $border-radius-large; // Large rounded corners
+    color: $white-color; // Text color of the button
+    font-size: $btn-font-size; // Font size for the button text
+    font-weight: $font-weight-bold; // Bold font weight
+    line-height: normal;
+    transition: all 0.3s; // Smooth transition for hover effects
+    padding: 12px 28px; // Padding for the button
+  
+    // Hover effect for the button
+    &:hover {
+      background: $custom-btn-bg-hover-color; // Change background on hover
+      color: $white-color; // Keep text color white on hover
+    }
+  
+    // Modifier class for a button with a white background
+    &-bg-white {
+      border-color: $white-color; // White border for the button
+      color: $white-color; // White text color
+    }
+  
+    // Modifier class for italic text
+    &-italic {
+      font-style: italic; // Italicize button text
+    }
+  }
+  
+  .custom-border-btn {
+    background: transparent; // Transparent background
+    border: 2px solid $white-color; // White border
+    color: $white-color; // White text color
+  
+    // Hover effect for the custom border button
+    &:hover {
+      background: $white-color; // White background on hover
+      color: $secondary-color; // Secondary color for text on hover
+    }
+  }
+  
+
+
+  /*---------------------------------------
+  NAVIGATION BAR & OFFCANVAS              
+  -----------------------------------------*/
+ // Define color and size variables
+$white-color:                 #ffffff; // White color for text and icons
+$dark-color:                  #000000; // Dark color for overlays
+$secondary-color:             #DDA15E; // Secondary color for hover effects
+$border-radius-medium:        20px; // Medium border radius for rounded corners
+$menu-font-size:              16px; // Font size for menu items
+
+// Mixin for sticky wrapper styling
+// This mixin is used for the sticky header to ensure it stays on top
+@mixin sticky-wrapper {
+  position: absolute; // Use fixed positioning to keep the header in place
+  z-index: 999999; // High z-index to stay above other elements
+  top: 0; // Align the wrapper to the top of the viewport
+  right: 0;
+  left: 0;
+}
+
+// Sticky wrapper styles
+.sticky-wrapper {
+  @include sticky-wrapper;
+  
+  &.is-sticky {
+    .container {
+      background: rgba(0, 0, 0, 0.65); // Semi-transparent dark background
+      border-radius: $border-radius-medium; // Apply medium border radius for rounded corners
+      padding: 15px 30px; // Padding inside the container
+    }
+  }
+}
+
+// Navbar styles
+.navbar {
+  background: transparent; // Transparent background for the navbar
+  z-index: 999999; // Ensures navbar stays above other content
+  padding-top: 30px; // Padding at the top of the navbar
+  padding-bottom: 30px; // Padding at the bottom of the navbar
+}
+
+// Container inside the navbar
+.navbar .container {
+  background: rgba(0, 0, 0, 0.35); // Semi-transparent dark background
+  border-radius: $border-radius-medium; // Rounded corners
+  padding: 15px 30px; // Padding inside the container
+}
+
+// Navbar brand styles
+.navbar-brand,
+.navbar-brand:hover {
+  font-size: var(--h4-font-size); // Font size for the brand
+  font-weight: var(--font-weight-bold); // Bold font weight
+  display: block; // Ensures brand occupies its own line
+  color: $white-color; // White color for text
+}
+
+// Navbar brand image styles
+.navbar .navbar-brand-image {
+  filter: brightness(0) invert(1); // Inverts color of the image to match the white theme
+}
+
+.navbar-brand-image {
+  width: 48px; // Set width for brand image
+  height: auto; // Auto height to maintain aspect ratio
+  margin-right: 10px; // Space between image and text
+}
+
+// Custom button inside navbar
+.navbar .custom-btn {
+  padding: 10px 20px; // Padding inside the button
+}
+
+// Navbar links styling
+.navbar-expand-lg .navbar-nav .nav-link {
+  border-radius: var(--border-radius-large); // Large rounded corners for links
+  margin: 10px; // Space around the links
+  padding: 10px; // Padding inside the links
+}
+
+.navbar-nav .nav-link {
+  display: inline-block; // Ensures links are displayed as blocks for padding
+  color: $white-color; // White color for text
+  font-size: $menu-font-size; // Font size for menu items
+  font-weight: var(--font-weight-bold); // Bold font weight
+  padding-top: 15px;
+  padding-bottom: 15px; // Padding inside the link
+}
+
+// Active and hover states for navbar links
+.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link:hover {
+  color: $secondary-color; // Changes color on hover and active states
+}
+
+// Dropdown menu styles
+.navbar .dropdown-menu {
+  background: $white-color; // White background for dropdown
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175); // Shadow for dropdown
+  border: 0; // No border
+  display: inherit; // Ensure dropdown behaves as expected
+  opacity: 0; // Hidden by default
+  min-width: 9rem; // Minimum width for dropdown
+  margin-top: 20px; // Space above the dropdown
+  padding: 13px 0 10px 0; // Padding inside the dropdown
+  transition: all 0.3s; // Smooth transition for visibility
+  pointer-events: none; // Ignore pointer events when hidden
+}
+
+// Dropdown arrow
+.navbar .dropdown-menu::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 15px solid $white-color; // Arrow pointing to the dropdown
+  position: absolute;
+  top: -10px;
+  left: 10px; // Position of the arrow
+}
+
+// Dropdown item styles
+.navbar .dropdown-item {
+  display: inline-block; // Display items inline
+  color: var(--p-color); // Color for dropdown items
+  font-size: $menu-font-size; // Font size for items
+  font-weight: var(--font-weight-medium); // Medium font weight
+  position: relative; // Allows positioning of pseudo-elements
+}
+
+// Dropdown item states
+.navbar .dropdown-item.active, 
+.navbar .dropdown-item:active,
+.navbar .dropdown-item:focus, 
+.navbar .dropdown-item:hover {
+  background: transparent; // Transparent background on hover
+  color: $link-hover-color; // Color changes on hover and active states
+}
+
+// Dropdown toggle icon
+.navbar .dropdown-toggle::after {
+  content: "\f282"; // Unicode for the dropdown icon
+  display: inline-block;
+  font-family: bootstrap-icons !important; // Font family for icons
+  font-size: $menu-font-size; // Font size for icon
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  left: 2px; // Position of the icon
+  border: 0; // No border
+}
+
+// Media query for dropdown hover
+@media screen and (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    opacity: 1; // Show dropdown menu on hover
+    margin-top: 0; // Remove margin when visible
+    pointer-events: auto; // Allow pointer events when visible
+  }
+}
+
+// Navbar toggler (for mobile view) styles
+.navbar-toggler {
+  border: 0; // No border for the toggler
+  padding: 0; // No extra padding
+  cursor: pointer; // Pointer cursor on hover
+  margin: 0; // No extra margin
+  width: 30px; // Width of the toggler
+  height: 35px; // Height of the toggler
+  outline: none; // Remove default outline
+}
+
+.navbar-toggler:focus {
+  outline: none; // Remove outline on focus
+  box-shadow: none; // No box-shadow on focus
+}
+
+// Navbar toggler icon styles
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background: transparent; // Transparent background when expanded
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  transition: top 300ms 50ms ease, transform 300ms 350ms ease; // Smooth transition for rotation
+  top: 0; // Align to top when expanded
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+  transform: rotate(45deg); // Rotate before pseudo-element
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  transform: rotate(-45deg); // Rotate after pseudo-element
+}
+
+// Toggler icon styles
+.navbar-toggler .navbar-toggler-icon {
+  background: $white-color; // White color for the icon
+  transition: background 10ms 300ms ease; // Smooth background transition
+  display: block; // Block display for icon
+  width: 30px; // Width of the icon
+  height: 2px; // Height of the icon
+  position: relative; // Positioning for pseudo-elements
+}
+
+.navbar-toggler .navbar-toggler-icon:before,
+.navbar-toggler .navbar-toggler-icon:after {
+  transition: top 300ms 350ms ease, transform 300ms 50ms ease; // Smooth transition for pseudo-elements
+  position: absolute; // Positioning for pseudo-elements
+  right: 0;
+  left: 0;
+  background: $white-color; // White color for pseudo-elements
+  width: 30px; // Width of pseudo-elements
+  height: 2px; // Height of pseudo-elements
+  content: ''; // Empty content for pseudo-elements
+}
+
+.navbar-toggler .navbar-toggler-icon::before {
+  top: -8px; // Position before pseudo-element
+}
+
+.navbar-toggler .navbar-toggler-icon::after {
+  top: 8px; // Position after pseudo-element
+}
+
+
+  /*---------------------------------------
+  HERO        
+  -----------------------------------------*/
+
+  .hero-section {
+    background-color: $dark-color; // Background color of the hero section
+    position: relative; // Positioning relative to its container
+    overflow: hidden; // Ensures content that overflows will be hidden
+    min-height: 620px; // Minimum height of the hero section
+    text-align: center; // Center-align text within the section
+  }
+  
+  .hero-section::after {
+    background-color: rgba(0, 0, 0, 0.65); // Semi-transparent black overlay
+    border-radius: $border-radius-medium; // Medium border radius for the overlay
+    content: ""; // Creates a pseudo-element
+    position: absolute; // Absolute positioning within the hero section
+    top: 55%; // Positions the element vertically
+    left: 50%; // Positions the element horizontally
+    transform: translate(-55%, -50%) rotate(45deg); // Centers the overlay and rotates it
+    width: 250px; // Width of the overlay
+    height: 350px; // Height of the overlay
+    pointer-events: none; // Disables interaction with the pseudo-element
+  }
+  
+  @media screen and (min-width: 991px) {
+    .hero-section {
+      height: 100vh; // Sets hero section height to full viewport height on larger screens
+    }
+  }
+  
+  .hero-section h1 {
+    color: $white-color; // Sets the color of <h1> text to white
+  }
+  
+  .small-text {
+    color: $secondary-color; // Secondary color for smaller text
+  }
+  
+  .hero-section .custom-border-btn {
+    border-color: transparent; // Transparent border for buttons in hero section
+  }
+  
+  .hero-section .container {
+    position: relative;
+    z-index: 9; // Ensures the container content stays on top of the overlay
+  }
+  
+  .hero-slides {
+    width: 100%; // Full width for slides within the hero section
+    height: 100%; // Full height for slides within the hero section
+    position: absolute !important; // Absolute positioning, marked as important
+  }
+  
+  .opening-hours-list {
+    margin: 0; // Removes default margin
+    padding: 0; // Removes default padding
+  }
+  
+  .opening-hours-list li {
+    color: rgba(255, 255, 255, 0.75); // Slightly transparent white text color
+    font-size: $btn-font-size; // Button font size applied to list items
+    font-weight: $font-weight-normal; // Normal font weight for list items
+    margin-bottom: 10px; // Space between list items
+  }
+  
+  .opening-hours-list li .underline {
+    background-color: rgba(255, 255, 255, 0.75); // Transparent white underline
+    width: 35%; // Underline width as 35% of its container
+    height: 1px; // Underline height
+    margin: auto 15px 0 15px; // Centering the underline with some spacing
+  }
+  
+
+
+  /*---------------------------------------
+  ABOUT              
+  -----------------------------------------*/
+
+  .about-section {
+    background-color: $secondary-color; // Background color for the about section
+    position: relative; // Relative positioning for containing child elements
+  
+    .ratio {
+      border-radius: $border-radius-medium; // Medium rounded corners for ratio element
+    }
+  
+    .custom-video {
+      border-radius: $border-radius-medium; // Medium rounded corners for video
+      width: 100%; // Full width for the video
+      height: 100%; // Full height for the video
+      object-fit: cover; // Ensures the video covers its container while maintaining aspect ratio
+    }
+  
+    .about-image-wrap {
+      border-radius: $border-radius-medium; // Medium rounded corners for the image container
+      position: relative; // Allows for proper positioning of child elements
+      overflow: hidden; // Ensures any overflow content is hidden
+    }
+  
+    .about-video-info {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(188, 108, 37, 1)); // Gradient overlay
+      border-radius: $border-radius-medium; // Medium rounded corners for the video info container
+      bottom: 0; // Positioned at the bottom of the container
+      height: auto; // Dynamic height based on content
+      padding: 40px; // Padding inside the video info
+  
+      h4 {
+        color: $white-color; // White color for headings inside video info
+      }
+    }
+  
+    h6 {
+      color: $secondary-color; // Secondary color for <h6> headings
+    }
+  }
+  
+  .team-block-wrap {
+    background-color: $secondary-color; // Background color for the team block
+    border-radius: $border-radius-medium; // Medium rounded corners for the team block
+    position: relative; // Relative positioning for internal elements
+    overflow: hidden; // Hides overflowing content
+    max-height: 450px; // Maximum height for the team block
+    cursor: pointer; // Changes the cursor to pointer on hover
+  
+    &:hover .team-block-image {
+      transform: scale(1.2); // Scales the team block image on hover
+    }
+  
+    .team-block-image-wrap {
+      width: 100%; // Full width for the image container
+    }
+  
+    .team-block-image {
+      display: block; // Displays the image as a block element
+      object-fit: cover; // Ensures the image covers its container while maintaining aspect ratio
+      width: 100%; // Full width of the image
+      height: 100%; // Full height of the image
+      transition: all 0.3s; // Smooth transition effect for scaling
+    }
+  
+    .team-block-info {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(188, 108, 37, 1)); // Gradient overlay for team block info
+      position: absolute; // Absolute positioning for info overlay
+      z-index: 2; // Ensures the info overlay stays above the image
+      top: 0; // Stretches the info overlay to the top
+      right: 0; // Stretches the info overlay to the right
+      bottom: 0; // Stretches the info overlay to the bottom
+      left: 0; // Stretches the info overlay to the left
+      padding: 30px; // Padding inside the info container
+  
+      .badge {
+        margin: auto; // Centers the badge vertically and horizontally
+        top: 2px; // Positions the badge 2px from the top
+        bottom: 0; // Aligns the bottom of the badge with the container
+      }
+    }
+  }
+  
+
+
+/*---------------------------------------
+  OUR MENU              
+-----------------------------------------*/
+.menu-section {
+  background-image: url('../images/happy-waitress-giving-coffee-customers-while-serving-them-coffee-shop.jpg');  // Sets the background image
+  background-repeat: no-repeat; // Ensures the background image doesn't repeat
+  background-size: cover; // // Stretches the image to cover the entire section
+}
+
+.menu-block-wrap {
+  background: rgba(0, 0, 0, 0.65); // Adds a semi-transparent black background over the section
+  border-radius: $border-radius-medium; // Applies medium-sized rounded corners to the block
+  padding: 45px; // Provides inner space for content within the block
+}
+
+.menu-block {
+  .border-top {
+    border-top-color: rgba(255, 255, 255, 0.35) !important; // Adds a semi-transparent white border on top
+  }
+
+  h6 {
+    color: $white-color; // Applies a white color to the <h6> headers
+  }
+
+  small {
+    color: rgba(255, 255, 255, 0.35); // Adds a semi-transparent white color to the <small> text
+  }
+
+  strong {
+    color: $secondary-color; // Assigns a secondary theme color to <strong> text
+  }
+}
+
+.menu-block-image {
+  border-radius: 100%; // Turns the image into a circle
+  width: 350px; // Sets a fixed width of 350px
+  height: 350px; // Sets a fixed height of 350px, making it a square
+  object-fit: cover; // Ensures the image covers the container without distorting
+  display: block; // Displays the image as a block element for proper centering
+  margin: auto; // Centers the image horizontally
+  cursor: pointer; // Changes the cursor to a pointer on hover
+}
+
+.badge {
+  background-color: $primary-color; // Sets the badge background to the primary theme color
+  font-size: 12px; // Sets a small font size for the badge text
+  position: relative; // Enables positioning of the decorative triangle
+  bottom: 4px; // Moves the badge slightly downward
+  padding-bottom: 6px; // Adds padding to the bottom of the badge
+
+  &::before {
+    content: ""; // Adds a decorative triangle on the left side of the badge
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -5px;
+    border-top: 10px solid transparent; // Top part of the triangle
+    border-bottom: 10px solid transparent; // Bottom part of the triangle
+    border-right: 10px solid $primary-color; // The triangle matches the badge's background color
+  }
+}
+
+  
+  /*---------------------------------------
+  REVIEWS              
+  -----------------------------------------*/
+  .reviews-section {
+    background-color: #7c5c52; // Sets a background color for the entire reviews section
+  }
+  
+  .reviews-block {
+    background-color: $section-bg-color; // Applies a background color to the review blocks
+    border-radius: $border-radius-medium; // Adds medium-sized rounded corners
+    position: relative; // Enables absolute positioning within the block
+    overflow: hidden; // Ensures content does not overflow the rounded corners
+  
+    .border-top {
+      border-top-color: rgba(255, 255, 255, 0.35) !important; // Adds a semi-transparent white border on top
+    }
+  }
+  
+  .reviews-block-image-wrap {
+    background-image: url('../images/mid-section-waitress-wiping-espresso-machine-with-napkin-cafa-c.jpg'); // Sets a background image for the image wrap
+    background-repeat: no-repeat; // Ensures the image does not repeat
+    background-size: cover; // Stretches the image to cover the container
+    background-position: center; // Centers the image within the container
+    padding: 30px; // Adds padding inside the image wrap
+  }
+  
+  .reviews-block-image {
+    border-radius: $border-radius-large; // Applies large rounded corners to the image
+    width: 65px; // Sets the image width
+    height: 65px; // Sets the image height, making it a square
+    object-fit: cover; // Ensures the image covers the container without distortion
+    margin-right: 10px; // Adds spacing to the right of the image
+  }
+  
+  .reviews-block-info {
+    padding: 20px 30px; // Adds padding inside the block info area
+  
+    p {
+      font-size: $btn-font-size; // Sets the font size for paragraphs
+      font-style: italic; // Italicizes the text
+      color: rgba(255, 255, 255, 0.75); // Adds a semi-transparent white color to the text
+    }
+  }
+  
+  .reviews-group {
+    i {
+      color: $white-color; // Sets the color of icons within the reviews group to white
+    }
+  }
+  
+  
+
+  /*---------------------------------------
+  BOOKING SECTION              
+  -----------------------------------------*/
+  .booking-section {
+    background-image: url('../images/young-female-barista-wear-face-mask-serving-take-away-hot-coffee-paper-cup-consumer-cafe.jpg'); // Sets the background image for the booking section
+    background-repeat: no-repeat; // Ensures the image does not repeat
+    background-position: center; // Centers the background image
+    background-size: cover; // Stretches the background image to cover the entire section
+    position: relative; // Positions the section relative to its normal position
+  }
+  
+  .booking-form-wrap {
+    background-color: rgba(0, 0, 0, 0.65); // Applies a semi-transparent black background to the form wrap
+    border-radius: $border-radius-medium; // Adds medium-sized rounded corners
+    position: relative; // Positions the form wrap relative to its normal position
+    overflow: hidden; // Ensures content does not overflow the rounded corners
+    margin-top: 100px; // Adds a top margin to create space above the form
+  }
+  
+  .booking-form {
+    padding: 55px 65px; // Adds padding inside the booking form
+  }
+  
+  .booking-form-image-wrap {
+    position: relative; // Allows positioning of child elements within this container
+    height: 100%; // Sets the height to fill the parent container
+  }
+  
+  .booking-form-image {
+    width: 100%; // Makes the image fill the width of the container
+    height: 100%; // Makes the image fill the height of the container
+    object-fit: cover; // Ensures the image covers the container without distortion
+  }
+  
+  .booking-form-text {
+    span {
+      color: $white-color; // Sets the text color to white
+      font-size: $btn-font-size; // Applies font size from the button font size variable
+    }
+  }
+  
+  .reservation-page {
+    .custom-border-btn {
+      border-color: $secondary-color; // Sets the border color to the secondary color
+      color: $secondary-color; // Sets the text color to the secondary color
+  
+      &:hover {
+        border-color: transparent; // Changes the border color to transparent on hover
+      }
+    }
+  }
+  
+
+/*---------------------------------------
+  CONTACT               
+-----------------------------------------*/
+
+.contact-section {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(188, 108, 37, 1)), url('../images/young-female-barista-wear-face-mask-serving-take-away-hot-coffee-paper-cup-consumer-cafe.jpg'); 
+  // Sets a gradient overlay combined with a background image
+  background-repeat: no-repeat; // Prevents repeating of the background image
+  background-position: center; // Centers the background image
+  background-size: cover; // Ensures the image covers the entire section
+}
+
+.google-map {
+  border-radius: $border-radius-medium; // Adds rounded corners to the map
+  filter: grayscale(100); // Applies a grayscale filter to the map
+}
+
+.contact-block-wrap {
+  background: $primary-color; // Sets the background color for the block wrap
+  border-radius: $border-radius-medium; // Adds medium-sized rounded corners
+  padding: 0; // Removes padding
+  min-height: 200px; // Ensures a minimum height for the block wrap
+}
+
+.contact-block {
+  background: $secondary-color; // Sets the background color for the contact block
+  border-radius: $border-radius-medium; // Adds medium-sized rounded corners
+  transform: rotate(8deg); // Rotates the block by 8 degrees
+  height: 100%; // Ensures the block takes up the full height of its container
+  padding: 20px 40px; // Adds padding inside the block
+
+  h6 {
+    transform: rotate(-8deg); // Counter-rotates the heading to counteract the block's rotation
+  }
+
+  .custom-icon {
+    background: $primary-color; // Sets the background color of the icon
+    border-radius: $border-radius-large; // Adds large rounded corners
+    display: block; // Ensures the icon is displayed as a block element
+    width: 50px; // Sets a fixed width
+    height: 50px; // Sets a fixed height
+    line-height: 50px; // Centers text vertically within the icon
+    text-align: center; // Centers text horizontally within the icon
+    position: relative; // Positions the icon relative to its normal position
+  }
+
+  strong {
+    display: block; // Displays strong text as a block element
+    color: $white-color; // Sets the text color to white
+    text-transform: uppercase; // Transforms text to uppercase
+    margin-top: 20px; // Adds space above the text
+    margin-bottom: 10px; // Adds space below the text
+  }
+}
+
+  
+/*---------------------------------------
+  CUSTOM FORM               
+-----------------------------------------*/
+.custom-form {
+  .form-control {
+    color: $p-color; // Sets the text color of the input fields
+    border-radius: $border-radius-small; // Applies small rounded corners to the input fields
+    margin-bottom: 30px; // Adds spacing below the input fields
+    padding-top: 13px; // Adds padding to the top of the input fields
+    padding-bottom: 13px; // Adds padding to the bottom of the input fields
+    box-shadow: none; // Removes any default box-shadow
+    outline: none; // Removes the default outline when the input is focused
+    transition: all 0.3s; // Smooth transition for background and border color changes
+
+    &:hover,
+    &:focus {
+      background: $primary-color; // Changes background color on hover and focus
+      border-color: transparent; // Removes the border color on hover and focus
+    }
+  }
+
+  .form-label {
+    color: $white-color; // Sets the color of the labels
+    font-style: italic; // Applies italic style to the labels
+    margin-bottom: 15px; // Adds spacing below the labels
+  }
+
+  button[type="submit"] {
+    background: $custom-btn-bg-color; // Sets the background color of the submit button
+    border: none; // Removes the default border
+    border-radius: $border-radius-large; // Applies large rounded corners to the button
+    color: $white-color; // Sets the text color of the button
+    font-size: $form-btn-font-size; // Sets the font size for the button
+    font-weight: $font-weight-bold; // Sets the font weight for the button
+    transition: all 0.3s; // Smooth transition for background color changes
+    margin-bottom: 0; // Removes the bottom margin
+
+    &:hover,
+    &:focus {
+      background: $white-color; // Changes background color on hover and focus
+      border-color: transparent; // Removes the border color on hover and focus
+      color: $primary-color; // Changes the text color on hover and focus
+    }
+  }
+}
+
+.contact-form .form-control,
+.booking-form .form-control {
+  background-color: transparent; // Sets a transparent background color
+  border-color: rgba(255, 255, 255, 0.25); // Sets a semi-transparent white border color
+}
+
+.booking-form .form-control {
+  color: $white-color; // Sets the text color for booking form input fields
+}
+
+.custom-form input::-webkit-input-placeholder,
+.custom-form textarea::-webkit-input-placeholder {
+  color: $white-color; // Sets the color of placeholders in WebKit browsers
+}
+
+.booking-form input:-moz-placeholder,
+.booking-form textarea:-moz-placeholder {
+  color: $white-color; // Sets the color of placeholders in Mozilla browsers
+}
+
+
+  /*---------------------------------------
+  SITE FOOTER              
+-----------------------------------------*/
+
+.site-footer {
+  background-color: $primary-color; // Sets the background color of the footer
+  padding-top: 100px; // Adds top padding to the footer
+  padding-bottom: 100px; // Adds bottom padding to the footer
+
+  strong {
+    color: $white-color; // Sets the color of strong elements (e.g., bold text) to white
+  }
+
+  p,
+  .site-footer-link {
+    color: rgba(255, 255, 255, 0.75); // Sets the color of paragraphs and footer links to a semi-transparent white
+    font-size: $btn-font-size; // Sets the font size for paragraphs and footer links
+  }
+
+  .site-footer-link {
+    transition: all 0.3s; // Adds a smooth transition effect for link changes
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.75); // Ensures link color remains the same on hover
+      text-decoration: underline; // Underlines the link on hover
+    }
+  }
+
+  .copyright-text {
+    color: rgba(255, 255, 255, 0.75); // Sets the color of the copyright text
+    font-size: $menu-font-size; // Sets the font size of the copyright text
+
+    a {
+      color: rgba(255, 200, 160, 0.75); // Sets the color of links within the copyright text to a different shade
+    }
+  }
+}
+
+
+  /*---------------------------------------
+  SOCIAL ICON               
+-----------------------------------------*/
+.social-icon {
+  margin: 0; // Removes any default margin from the social icon container
+  padding: 0; // Removes any default padding from the social icon container
+}
+
+.social-icon-item {
+  list-style: none; // Removes the default list styling
+  display: inline-block; // Aligns items horizontally
+  vertical-align: top; // Aligns items to the top of their container
+}
+
+.social-icon-link {
+  background: $primary-color; // Sets the background color of the social icon link
+  border-radius: $border-radius-large; // Applies rounded corners to the icon
+  color: $white-color; // Sets the text color to white
+  font-size: $menu-font-size; // Sets the font size for the icon
+  display: block; // Makes the link a block-level element
+  margin: 0 5px; // Adds horizontal spacing between icons
+  text-align: center; // Centers the text horizontally within the icon
+  width: 35px; // Sets the width of the icon
+  height: 35px; // Sets the height of the icon
+  line-height: 35px; // Vertically centers the text
+  transition: background 0.2s, color 0.2s; // Adds a smooth transition effect for background and text color changes
+
+  &:hover {
+    background: $white-color; // Changes background color on hover
+    color: $primary-color; // Changes text color on hover
+  }
+
+  span {
+    display: block; // Ensures span elements are block-level within the icon
+  }
+}
+
+  /*---------------------------------------
+  RESPONSIVE STYLES                
+-----------------------------------------*/
+/* Styles for screens 1200px and below (e.g., large tablets, small desktops) */
+@media screen and (max-width: 1200px) {
+  h1 {
+      font-size: 62px; /* Adjust font size for headings to fit smaller screens */
+  }
+}
+
+/* Styles for screens 991px and below (e.g., tablets in portrait mode) */
+@media screen and (max-width: 991px) {
+  h1 {
+      font-size: 54px; /* Smaller heading for tablets */
+  }
+  h2 {
+      font-size: 36px; /* Adjust heading size for tablets */
+  }
+  h3 {
+      font-size: 32px; /* Adjust heading size for tablets */
+  }
+  h4 {
+      font-size: 28px; /* Adjust heading size for tablets */
+  }
+  h5 {
+      font-size: 20px; /* Adjust heading size for tablets */
+  }
+  h6 {
+      font-size: 18px; /* Adjust heading size for tablets */
+  }
+  
+  .section-padding {
+      padding-top: 50px; /* Reduce padding for sections on tablets */
+      padding-bottom: 50px; /* Reduce padding for sections on tablets */
+  }
+  
+  .hero-section {
+      padding-top: 148px; /* Adjust padding for hero section on tablets */
+      padding-bottom: 100px; /* Adjust padding for hero section on tablets */
+  }
+  
+  .navbar-brand,
+  .navbar-brand:hover {
+      font-size: var(--h5-font-size); /* Adjust font size for navbar brand */
+  }
+  
+  .navbar-expand-lg .navbar-nav {
+      padding-bottom: 20px; /* Adjust padding for navbar items */
+  }
+  
+  .navbar-expand-lg .navbar-nav .nav-link {
+      padding: 0; /* Remove padding from nav links */
+      margin-bottom: 0; /* Remove margin from nav links */
+  }
+  
+  .navbar .custom-btn {
+      margin-bottom: 10px; /* Adjust margin for custom buttons in the navbar */
+  }
+  
+  .booking-form {
+      padding: 45px; /* Reduce padding for booking form on tablets */
+  }
+  
+  .contact-section .container {
+      width: auto; /* Adjust width for contact section container */
+      margin-right: 10px; /* Adjust margin for container */
+      margin-left: 10px; /* Adjust margin for container */
+      padding: 35px; /* Adjust padding for contact section container */
+  }
+  
+  .site-footer {
+      padding-top: 50px; /* Reduce padding for footer */
+      padding-bottom: 50px; /* Reduce padding for footer */
+  }
+}
+
+/* Styles for screens 767px and below (e.g., small tablets, large phones) */
+@media screen and (max-width: 767px) {
+  .custom-btn {
+      font-size: 14px; /* Reduce font size for custom buttons */
+      padding: 12px 20px; /* Reduce padding for custom buttons */
+  }
+  
+  .menu-block-wrap,
+  .reviews-block-image-wrap,
+  .reviews-block-info {
+      padding: 20px; /* Reduce padding for various blocks */
+  }
+}
+
+/* Styles for screens 578px and below (e.g., small phones) */
+@media screen and (max-width: 578px) {
+  .navbar .container,
+  .sticky-wrapper.is-sticky .container {
+      margin-right: 10px; /* Adjust margin for navbar container */
+      margin-left: 10px; /* Adjust margin for navbar container */
+  }
+}
+
+// Styles for screens 480px and below (e.g., extra-small phones)
+@media screen and (max-width: 480px) {
+  h1 {
+      font-size: 38px; // Smaller heading size for very small screens
+  }
+  
+  h2 {
+      font-size: 28px; /* Smaller heading size for very small screens */
+  }
+  
+  h3 {
+      font-size: 26px; /* Smaller heading size for very small screens */
+  }
+  
+  h4 {
+      font-size: 22px; /* Smaller heading size for very small screens */
+  }
+  
+  h5 {
+      font-size: 20px; /* Smaller heading size for very small screens */
+  }
+  
+  .hero-section::after {
+      width: 200px; /* Adjust width for hero section decoration */
+      height: 200px; /* Adjust height for hero section decoration */
+  }
+  
+  .booking-form {
+      padding: 35px; /* Reduce padding for booking form on extra-small screens */
+  }
+  
+  .opening-hours-list li {
+      font-size: 12px; /* Adjust font size for opening hours list */
+  }
+  
+  .reviews-block-image-wrap {
+      flex-direction: column; /* Stack images vertically in reviews block */
+  }
+  
+  .reviews-block-image {
+      margin-bottom: 15px; /* Adjust margin for images in reviews block */
+  }
+  
+  .timeline-container {
+      padding-left: 55px; /* Adjust padding for timeline container */
+  }
+  
+  .timeline-container::before {
+      left: 44px; // Adjust position of the timeline indicator
+      border: medium solid white; // Border style for the timeline indicator
+      border-width: 15px 15px 15px 0; // Border width to create the indicator shape
+      border-color: transparent white transparent transparent; /* Adjust border color for timeline indicator */
+  }
+  
+  .timeline-container-left::before,
+  .timeline-container-right::before {
+      top: 13px; /* Adjust top position of timeline indicators */
+  }
+}
